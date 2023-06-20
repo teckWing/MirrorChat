@@ -21,7 +21,6 @@ if unzip:
     print("Found " + str(count) + " chats.")
     for x in os.listdir(path_dir_zipchat):
         if x.startswith("WhatsApp"):
-            print(x)
             with zipfile.ZipFile(path_dir_zipchat+"/"+x, 'r') as zip_ref:
                 zip_ref.extractall(path_dir_chats)
                 os.rename(path_dir_chats+"/_chat.txt",path_dir_chats+"/chat"+str(len(os.listdir(path_dir_chats)))+".txt")
@@ -32,7 +31,7 @@ else:
 
 if count!=0:
     # regex for what you want to delete
-    to_remove =  r'((?:immagine omessa|audio omesso|sticker non incluso|video omesso|Chiamata vocale persa|Videochiamata persa|Hai bloccato questo contatto|Hai sbloccato questo contatto|image omitted|audio omitted|sticker omitted|video omitted|Missed group voice call|Missed group video call|Missed voice call|Missed video call|You blocked this contact|You unblocked this contact))'
+    to_remove =  r'((?:immagine omessa|audio omesso|sticker non incluso|documento omesso|video omesso|Chiamata vocale persa|Videochiamata persa|Hai bloccato questo contatto|Hai sbloccato questo contatto|document omitted|image omitted|audio omitted|sticker omitted|video omitted|Missed group voice call|Missed group video call|Missed voice call|Missed video call|You blocked this contact|You unblocked this contact))'
     unicode_remove = r'[\u202a\u202d\u200e\u202c\u200e]'
     space_pattern = r"\s{2,}"
     def clean_text(s):
@@ -103,5 +102,6 @@ if count!=0:
                             f.write(x["completion"].lower()+"\n")
                             f.write("\n")
     shutil.rmtree("chats/")
+    print("Dataset created ---> data.txt")
 else:
     print("No data available! Check the path")
