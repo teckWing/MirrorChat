@@ -40,7 +40,7 @@ if count!=0:
         s=re.sub(space_pattern, "", s)
         return s.lower()
         
-    pattern = r"^\[\d{2}/\d{2}/\d{2}, \d{2}:\d{2}:\d{2}\] (.*?): (.*)"
+    pattern=r'\]\s*([^:]+):\s*(.+)$'
     # ! user ="INSERT_YOUR_NAME_ON_WHATSAPP"
     
     with open("data.txt","w", encoding="utf-8") :
