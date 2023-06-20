@@ -58,8 +58,14 @@ if count!=0:
                     line = clean_text(lines[i])
                     match = re.findall(pattern, line)
                     i+=1
-            sender, message =  match[0][0],match[0][1]
-            user=sender
+
+            if len(match)==0:
+                            message = ""
+            
+            else:
+                            sender, message =  match[0][0],match[0][1]
+            
+                            user=sender
             while i<len(lines):
                 prompt =""
                 while i<len(lines) and sender.startswith(user):
