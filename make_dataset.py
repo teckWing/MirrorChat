@@ -31,7 +31,7 @@ else:
 
 if count!=0:
     # regex for what you want to delete
-    to_remove =  r'((?:immagine omessa|audio omesso|sticker non incluso|video omesso))'
+    to_remove =  r'((?:immagine omessa|audio omesso|sticker non incluso|video omesso|Chiamata vocale persa|Videochiamata persa|Hai bloccato questo contatto|Hai sbloccato questo contatto|image omitted|audio omitted|sticker omitted|video omitted|Missed group voice call|Missed group video call|Missed voice call|Missed video call|You blocked this contact|You unblocked this contact))'
     unicode_remove = r'[\u202a\u202d\u200e\u202c\u200e]'
     space_pattern = r"\s{2,}"
     def clean_text(s):
