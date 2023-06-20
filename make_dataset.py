@@ -14,8 +14,9 @@ unzip = False if unzip_yn == 'y' else True
 path_dir_chats = "chats/"
 if os.path.isdir(path_dir_chats)==False:
     os.makedirs(path_dir_chats)
+path_dir_zipchat = input("Where are the chat located? Insert the path ---> ")
+
 if unzip:
-    path_dir_zipchat = input("Where are the chat located? Insert the path ---> ")
     count =sum(1 for file_name in os.listdir(path_dir_zipchat) if file_name.startswith('WhatsApp'))
     print("Found " + str(count) + " chats.")
     for x in os.listdir(path_dir_zipchat):
@@ -25,7 +26,7 @@ if unzip:
                 zip_ref.extractall(path_dir_chats)
                 os.rename(path_dir_chats+"/_chat.txt",path_dir_chats+"/chat"+str(len(os.listdir(path_dir_chats)))+".txt")
 else:
-    path_dir_zipchat = input("Where are the chat located? Insert the path ---> ")
+    
     count =sum(1 for file_name in os.listdir(path_dir_zipchat) if file_name.startswith('chat'))
     print("Found " + str(count) + " chats.")
 
@@ -53,7 +54,7 @@ if count!=0:
             line = clean_text(lines[1])
             match = re.findall(pattern, line)
             
-            while len(match)==0:
+            while i<len(lines) and len(match)==0:
                     line = clean_text(lines[i])
                     match = re.findall(pattern, line)
                     i+=1
