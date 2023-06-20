@@ -3,11 +3,7 @@ import os
 import zipfile
 import shutil
 
-print("\n Make sure you have all your zipped/unzipped chat in a folder before continuing. \n")
-
-# ! unzip=False
-unzip_yn = input("Have you unzipped the chat (y/n) ---> ")
-unzip = False if unzip_yn == 'y' else True
+print("\n Make sure you have all your zipped chat in a folder before continuing. \n")
 
 
 
@@ -16,18 +12,14 @@ if os.path.isdir(path_dir_chats)==False:
     os.makedirs(path_dir_chats)
 path_dir_zipchat = input("Where are the chat located? Insert the path ---> ")
 
-if unzip:
-    count =sum(1 for file_name in os.listdir(path_dir_zipchat) if file_name.startswith('WhatsApp'))
-    print("Found " + str(count) + " chats.")
-    for x in os.listdir(path_dir_zipchat):
-        if x.startswith("WhatsApp"):
-            with zipfile.ZipFile(path_dir_zipchat+"/"+x, 'r') as zip_ref:
-                zip_ref.extractall(path_dir_chats)
-                os.rename(path_dir_chats+"/_chat.txt",path_dir_chats+"/chat"+str(len(os.listdir(path_dir_chats)))+".txt")
-else:
-    
-    count =sum(1 for file_name in os.listdir(path_dir_zipchat) if file_name.startswith('chat'))
-    print("Found " + str(count) + " chats.")
+
+count =sum(1 for file_name in os.listdir(path_dir_zipchat) if file_name.startswith('WhatsApp'))
+print("Found " + str(count) + " chats.")
+for x in os.listdir(path_dir_zipchat):
+    if x.startswith("WhatsApp"):
+        with zipfile.ZipFile(path_dir_zipchat+"/"+x, 'r') as zip_ref:
+            zip_ref.extractall(path_dir_chats)
+            os.rename(path_dir_chats+"/_chat.txt",path_dir_chats+"/chat"+str(len(os.listdir(path_dir_chats)))+".txt")
 
 if count!=0:
     # regex for what you want to delete
